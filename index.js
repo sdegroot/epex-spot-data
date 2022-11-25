@@ -18,7 +18,7 @@ const { chunkAndChainPromises, toCSV } = require('./helpers');
 const historicYears = range(2005, 2019);
 const DEFAULT_START_DATE = '2019-01-01';
 
-moment.tz.setDefault('Europe/Paris');
+moment.tz.setDefault('Europe/Amsterdam');
 
 async function fetchDayAheadAuctionData(startOfWeek) {
   const params = {
