@@ -1,0 +1,42 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Update latest pricing info
+
+on:
+  schedule:
+    - cron: '0 13 * * *' # publication is done every day at 12:40 p.m. 
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write # allow committing? 
+
+# Allow one concurrent deployment
+concurrency:
+  group: "update-pricing"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm install
+      - run: npm run-script update-pricing
+        env:
+          ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+          ENTSOE_DOMAIN: "10YNL----------L"
+          TIMEZONE: 'Europe/Amsterdam'
+      - uses: EndBug/add-and-commit@v9 
+        with:
+          author_name: 'Github workflow'
+          author_email: 'workflow@local'
+          message: 'Updating numbers of today'
+          push: true
+
+
