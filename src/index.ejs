@@ -11,7 +11,7 @@
         <h1>EPEX Spot Data</h1>
         <ul>
             <% files.forEach(function(file) { %>
-            <li><a href="<%= file %>"><%= file.substr(file.indexOf('public/data') + 12) %></a></li>
+            <li><a href="<%= file.substr(file.indexOf('public/data') + 7) %>"><%= file.substr(file.indexOf('public/data') + 12) %></a></li>
             <% }); %>
         </ul>
     </body>
