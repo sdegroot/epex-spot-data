@@ -2,11 +2,11 @@
 name: Update latest pricing info
 
 on:
-  schedule:
-    - cron: '0 13 * * *' # publication is done every day at 12:40 p.m. 
+#  schedule:
+#    - cron: '0 13 * * *' # publication is done every day at 12:40 p.m. 
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+ workflow_dispatch:
 
 permissions:
   contents: write
